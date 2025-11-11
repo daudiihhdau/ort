@@ -187,7 +187,7 @@ internal data class AOSD21(
                 }
 
                 require(licenseText.length >= 20) {
-                    "The selected subcomponent's license '$selectedLicense' text must have a length of at least 20, but '$licenseText' has a " +
+                    "The selected subcomponent '$subcomponentName' with '$spdxId' must have a licensetext length of at least 20, but '$licenseText' has a " +
                         "length of ${licenseText.length}."
                 }
 
