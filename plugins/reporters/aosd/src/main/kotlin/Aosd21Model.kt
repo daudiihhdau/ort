@@ -133,13 +133,6 @@ internal data class AOSD21(
                 require(firstSubcomponentName == FIRST_SUBCOMPONENT_NAME) {
                     "The first subcomponent must be named 'main', but is it named '$firstSubcomponentName'."
                 }
-
-                // ✅ Neue Prüfung: Kein Subcomponent darf einen zu kurzen Lizenztext haben.
-                val invalidSubcomponents = subcomponents.filter { it.licenseText.length < 20 }
-                require(invalidSubcomponents.isEmpty()) {
-                    val names = invalidSubcomponents.joinToString { "'${it.subcomponentName}'" }
-                    "The component '$componentName' contains subcomponents with too short license texts (<20 chars): $names."
-                }
             }
     }
 
@@ -191,11 +184,6 @@ internal data class AOSD21(
 
                 require(spdxId.isNotEmpty()) {
                     "A subcomponent's SPDX ID must not be empty."
-                }
-
-                require(licenseText.length >= 20) {
-                    "The selected subcomponent '$subcomponentName' with '$spdxId' must have a license text length of at least 20, but '$licenseText' has a " +
-                        "length of ${licenseText.length}."
                 }
 
                 require(selectedLicense.isEmpty() || spdxId.toSpdx().isValidChoice(selectedLicense.toSpdx())) {
